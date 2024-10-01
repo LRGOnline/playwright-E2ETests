@@ -3,7 +3,7 @@ export default {
   testDir: './tests',  // Location of your test files
     use: {
       // Browser settings
-      headless: false, // Always run in headful mode (visible browser)
+      headless: true, // Always run in headful mode (visible browser)
       viewport: { width: 1920, height: 1080 }, // Full HD resolution
       ignoreHTTPSErrors: true,     // Ignore HTTPS errors (useful for staging environments)
       

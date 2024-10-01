@@ -113,7 +113,7 @@ test('Homepage to checkout journey', async ({ page }) => {
   await cardCVCInput.fill('123'); 
 
   // DEBUG Explicit wait to see what is on the page
-  await page.wait(5000);
+  //await page.wait(5000);
 
   // Assert that the URL is correct
   // Other Assertions... 

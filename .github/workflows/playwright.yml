@@ -1,0 +1,46 @@
+name: Playwright Tests
+
+# Run the tests when pushing to main or on pull requests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+workflow_dispatch:   # This allows manual trigger
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # or whichever version your project uses
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Install Playwright browsers
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # Run Playwright tests
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      # Upload test results to GitHub (optional)
+      - name: Upload Playwright test results
+        uses: actions/upload-artifact@v3
+        if: failure() || success()
+        with:
+          name: playwright-test-results
+          path: playwright-report/
